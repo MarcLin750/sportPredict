@@ -2,7 +2,7 @@
 
 ## Polar
 
-### Polar connection
+### Polar Token
 
 Pour créer un Token API Polar, suivez ces étapes:
 
@@ -11,9 +11,9 @@ Pour créer un Token API Polar, suivez ces étapes:
 2. Installer le module suivant: 
 - `pip install requests`
 
-3. Créer un compte Polar Flow si vous n'en avez pas encore: https://flow.polar.com/
+3. Créer un compte Polar Flow si vous n'en avez pas encore: https://flow.polar.com
 
-4. Connectez-vous avec le compte précédemment créé sur: https://admin.polaraccesslink.com/ 
+4. Connectez-vous avec le compte précédemment créé sur: https://admin.polaraccesslink.com
 
 5. Créez un client puis notez le `client_id` et le `client_secret`.
 
