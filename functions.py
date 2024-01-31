@@ -13,7 +13,7 @@ def authorization_code(client_id, client_secret):
 
 # fonction qui télécharge le token
 def create_token(authorization, code):
-    
+
     headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Basic ' + authorization,
@@ -24,13 +24,53 @@ def create_token(authorization, code):
       'code': code
     }
 
-    r = requests.post('https://polarremote.com/v2/oauth2/token', data=body, headers=headers)
+    rToken = requests.post('https://polarremote.com/v2/oauth2/token', data=body, headers=headers)
 
-    if r.status_code == 200: # vérifie que la reqête est valide 
-        response_json = r.json()
-        with open("token.json", 'w') as op: # le w signifie write pour écrire
-            json.dump(response_json, op, indent=4) # indent 4 fait qu'il y aura à chaque fois une indentation de 4 
-        print("\nLe token à bien été téléchargé avec succès.\n")
+    if rToken.status_code == 200: # vérifie que la reqête est valide 
+        tokenInfo = rToken.json()
+        access_token = tokenInfo['access_token']
+        User_id = str(tokenInfo['x_user_id'])
+
+        # enregistrement automatique de l'utilisateur
+        input_body1 = {
+          "member-id": "User_id_" + User_id
+        }
+        headers1 = {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + access_token
+        }
+
+        rUser = requests.post('https://www.polaraccesslink.com/v3/users', headers = headers1, json=input_body1)
+
+        if rUser.status_code >= 200 and rUser.status_code < 400:
+            userInfo = rUser.json()
+            
+            info = [] # list des éléments tokenInfo et UserInfo
+            info.append(tokenInfo)
+            info.append(userInfo)
+    
+            with open("userInfo.json", 'w') as op: # userInfo.json correspond au nom du fichier créer et le w signifie write pour écrire
+                json.dump(info, op, indent=4) # indent 4 fait qu'il y aura à chaque fois une indentation de 4 
+            print("Voici votre token: ", access_token)
+            print("\nLe fichier d'info à été téléchargé avec succès.\n")
+
+        else:
+            print(rUser.status_code)
     else:
-        print("Echec de la requête: ", r.status_code)
+        print("Echec de la requête: ", rToken.status_code)
 
+# renvoie la liste des exercices
+def getExercisesList(token):
+
+  headers = {
+    'Accept': 'application/json',
+    'Authorization': 'Bearer ' + token
+  }
+
+  r = requests.get('https://www.polaraccesslink.com/v3/exercises', headers = headers)
+
+  if r.status_code >= 200 and r.status_code < 400:
+      print(r.json())
+  else:
+      print(r)
