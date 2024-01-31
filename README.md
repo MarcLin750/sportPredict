@@ -20,7 +20,8 @@ Pour créer un Token API Polar, suivez ces étapes:
 6. Pour obtenir le `code` d'autorisation, rentrer dans votre navigateur le lien suivant: https://flow.polar.com/oauth2/authorization?response_type=code&client_id=`<client_id>`
 
 Remplacez `<client_id>` par le `client_id` que vous avez noté précédemment. (Cet URL contient des requêtes obligatoires et facultatifs qui génèrent le code dans l'URL.)
-\n**Attention: ce code est valide pendant 10 minute !**
+
+**Attention: ce code est valide pendant 10 minute !**
 
 7. Récupérer le `code` qui se trouve dans l'URL générée précédemment. Voici des exemples: 
 - http://www.another.redirect.does.not.ex.ist?code=71682f9544255285736fb6d2d8acb6cf
