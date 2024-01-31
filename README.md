@@ -23,8 +23,8 @@ Remplacez `<client_id>` par le `client_id` que vous avez noté précédemment. (
 **Attention: ce code est valide pendant 10 minute !**
 
 7. Récupérer le `code` qui se trouve dans l'URL générée précédemment. Voici des exemples: 
-- http://www.another.redirect.does.not.ex.ist?code=**71682f9544255285736fb6d2d8acb6cf**
-- http://www.random.redirect.does.not.ex.ist/products/list?product_id=332211&state=yourState&code=**71682f9544255285736fb6d2d8acb6cf**
+- http://www.another.redirect.does.not.ex.ist?code= **71682f9544255285736fb6d2d8acb6cf**
+- http://www.random.redirect.does.not.ex.ist/products/list?product_id=332211&state=yourState&code= **71682f9544255285736fb6d2d8acb6cf**
 
 8. Exécuter le fichier `tokenPolar.py` dans votre IDE ou dans le terminal avec la commande:
 `py tokenPolar.py`
