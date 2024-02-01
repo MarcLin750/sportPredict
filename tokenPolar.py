@@ -1,6 +1,6 @@
 from functions import *
 
-print("\nPour créer votre token il faudra renseigner votre client_id, client_secret puis votre code.\n(Pour optenir le code suivre étapes 6 et 7 du README.)\n")
+print("\nPour créer votre token, renseignez votre client_id, client_secret puis votre code.\n(Pour optenir le code suivre étapes 6 et 7 du README.)\n")
 
 #initialisation des variables
 print("client_id: ", end="")

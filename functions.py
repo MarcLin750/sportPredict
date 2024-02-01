@@ -1,5 +1,5 @@
-import base64
 import requests
+import base64
 import json
 
 # fonction qui convertit l'Id et le secret en base64
@@ -13,7 +13,6 @@ def authorization_code(client_id, client_secret):
 
 # fonction qui télécharge le token
 def create_token(authorization, code):
-
     headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Basic ' + authorization,
@@ -60,6 +59,32 @@ def create_token(authorization, code):
     else:
         print("Echec de la requête: ", rToken.status_code)
 
+# récupère le token et user_id dans le fichier json
+def getInfo():
+    try:
+        with open("userInfo.json") as f:
+            data = json.load(f)
+    except:
+        with open("../userInfo.json") as f:
+            data = json.load(f)
+
+    token = data[0]["access_token"]
+    user_id = str(data[0]["x_user_id"])
+    return token, user_id
+
+def createTransactionTrainingData(token, user_id):
+    headers = {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + token
+    }
+
+    r = requests.post('https://www.polaraccesslink.com/v3/users/'+user_id+'/exercise-transactions', headers = headers)
+
+    if r.status_code >= 200 and r.status_code < 400:
+        print(r.json())
+    else:
+        print(r)
+
 # renvoie la liste des exercices
 def getExercisesList(token):
 
@@ -74,3 +99,29 @@ def getExercisesList(token):
       print(r.json())
   else:
       print(r)
+
+def exercisesList(token):
+    headers = {
+      'Accept': 'application/json',  'Authorization': 'Bearer ' + token
+    }
+
+    r = requests.get('https://www.polaraccesslink.com/v3/users/38196969/exercise-transactions/286142734', headers = headers
+        )
+
+    if r.status_code >= 200 and r.status_code < 400:
+        print(r.json())
+    else:
+        print(r)
+
+def getExerciseSummary(token):
+    headers = {
+      'Accept': 'application/json',  'Authorization': 'Bearer ' + token
+    }
+
+    r = requests.get('https://www.polaraccesslink.com/v3/users/38196969/exercise-transactions/286142734/exercises/338806535', headers = headers
+        )
+
+    if r.status_code >= 200 and r.status_code < 400:
+        print(r.json())
+    else:
+        print(r)
