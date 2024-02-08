@@ -29,33 +29,34 @@ def create_token(authorization, code):
         tokenInfo = rToken.json()
         access_token = tokenInfo['access_token']
         User_id = str(tokenInfo['x_user_id'])
+        print(tokenInfo)
 
         # enregistrement automatique de l'utilisateur
-        input_body1 = {
-          "member-id": "User_id_" + User_id
-        }
-        headers1 = {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': 'Bearer ' + access_token
-        }
+    #     input_body1 = {
+    #       "member-id": "User_id_" + User_id
+    #     }
+    #     headers1 = {
+    #       'Content-Type': 'application/json',
+    #       'Accept': 'application/json',
+    #       'Authorization': 'Bearer ' + access_token
+    #     }
 
-        rUser = requests.post('https://www.polaraccesslink.com/v3/users', headers = headers1, json=input_body1)
+    #     rUser = requests.post('https://www.polaraccesslink.com/v3/users', headers = headers1, json=input_body1)
 
-        if rUser.status_code >= 200 and rUser.status_code < 400:
-            userInfo = rUser.json()
-            
-            info = [] # list des éléments tokenInfo et UserInfo
-            info.append(tokenInfo)
-            info.append(userInfo)
-    
-            with open("userInfo.json", 'w') as op: # userInfo.json correspond au nom du fichier créer et le w signifie write pour écrire
-                json.dump(info, op, indent=4) # indent 4 fait qu'il y aura à chaque fois une indentation de 4 
-            print("Voici votre token: ", access_token)
-            print("\nLe fichier d'info à été téléchargé avec succès.\n")
+    #     if rUser.status_code >= 200 and rUser.status_code < 400:
+    #         userInfo = rUser.json()
 
-        else:
-            print(rUser.status_code)
+    #         info = [] # list des éléments tokenInfo et UserInfo
+    #         info.append(tokenInfo)
+    #         info.append(userInfo)
+
+    #         with open("userInfo.json", 'w') as op: # userInfo.json correspond au nom du fichier créer et le w signifie write pour écrire
+    #             json.dump(info, op, indent=4) # indent 4 fait qu'il y aura à chaque fois une indentation de 4 
+    #         print("Voici votre token: ", access_token)
+    #         print("\nLe fichier d'info à été téléchargé avec succès.\n")
+
+    #     else:
+    #         print(rUser.status_code)
     else:
         print("Echec de la requête: ", rToken.status_code)
 
@@ -71,6 +72,32 @@ def getInfo():
     token = data[0]["access_token"]
     user_id = str(data[0]["x_user_id"])
     return token, user_id
+
+def getUserInfoTom(token, user_id):
+    headers = {
+      'Accept': 'application/json',  'Authorization': 'Bearer ' + token
+    }
+
+    r = requests.get('https://www.polaraccesslink.com/v3/users/'+user_id, headers = headers)
+
+    print('https://www.polaraccesslink.com/v3/users/'+user_id)
+
+    if r.status_code >= 200 and r.status_code < 400:
+        print(r.json())
+    else:
+        print(r)
+
+def getUserInfo():
+    headers = {
+      'Accept': 'application/json',  'Authorization': 'Bearer bd418b4f33cbcf3809b453965664b10b'
+      }
+
+    r = requests.get('https://www.polaraccesslink.com/v3/users/38196969', headers = headers)
+
+    if r.status_code >= 200 and r.status_code < 400:
+        print(r.json())
+    else:
+        print(r)
 
 def createTransactionTrainingData(token, user_id):
     headers = {
@@ -96,7 +123,9 @@ def getExercisesList(token):
   r = requests.get('https://www.polaraccesslink.com/v3/exercises', headers = headers)
 
   if r.status_code >= 200 and r.status_code < 400:
-      print(r.json())
+      info = r.json()
+      with open("exercises.json", 'w') as op: # userInfo.json correspond au nom du fichier créer et le w signifie write pour écrire
+        json.dump(info, op, indent=4)
   else:
       print(r)
 
@@ -105,7 +134,7 @@ def exercisesList(token):
       'Accept': 'application/json',  'Authorization': 'Bearer ' + token
     }
 
-    r = requests.get('https://www.polaraccesslink.com/v3/users/38196969/exercise-transactions/286142734', headers = headers
+    r = requests.get('https://www.polaraccesslink.com/v3/users/38196969/exercise-transactions/286554584', headers = headers
         )
 
     if r.status_code >= 200 and r.status_code < 400:
@@ -113,12 +142,38 @@ def exercisesList(token):
     else:
         print(r)
 
-def getExerciseSummary(token):
+def getExerciseSummary(token, user_id):
     headers = {
       'Accept': 'application/json',  'Authorization': 'Bearer ' + token
     }
 
-    r = requests.get('https://www.polaraccesslink.com/v3/users/38196969/exercise-transactions/286142734/exercises/338806535', headers = headers
+    r = requests.get('https://www.polaraccesslink.com/v3/users/' + user_id +'/exercise-transactions/286554584/exercises/340131156', headers = headers
+        )
+
+    if r.status_code >= 200 and r.status_code < 400:
+        print(r.json())
+    else:
+        print(r)
+
+def getAvailableSamples(token, user_id):
+    headers = {
+      'Accept': 'application/json',  'Authorization': 'Bearer ' + token
+    }
+
+    r = requests.get('https://www.polaraccesslink.com/v3/users/38196969/exercise-transactions/286554584/exercises/340131156/samples', headers = headers
+        )
+
+    if r.status_code >= 200 and r.status_code < 400:
+        print(r.json())
+    else:
+        print(r)
+
+def getSamples(token, user_id):
+    headers = {
+      'Accept': 'application/json',  'Authorization': 'Bearer ' + token
+    }
+
+    r = requests.get('https://www.polaraccesslink.com/v3/users/38196969/exercise-transactions/286554584/exercises/340131156/samples/10', headers = headers
         )
 
     if r.status_code >= 200 and r.status_code < 400:

@@ -2,10 +2,18 @@ from functions import *
 
 token, user_id = getInfo()
 
-# createTransactionTrainingData(token, user_id)
+# getUserInfoTom(token, user_id)
 
-getExercisesList(token)
+# getUserInfo()
+
+# getExercisesList(token)
+
+# createTransactionTrainingData(token, user_id)
 
 # exercisesList(token)
 
-# getExerciseSummary(token)
+# getExerciseSummary(token, user_id)
+
+# getAvailableSamples(token, user_id)
+
+getSamples(token, user_id)

@@ -7,7 +7,7 @@ print("client_id: ", end="")
 client_id = input()
 print("client_secret: ", end="")
 client_secret = input()
-print("code:", end="")
+print("code: ", end="")
 code = input()
 
 # la variable authorization prend l'id et le secret encodée en base64
