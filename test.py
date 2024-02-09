@@ -4,9 +4,9 @@ token, user_id = getInfo()
 
 # getUserInfoTom(token, user_id)
 
-# getUserInfo()
+getUserInfo()
 
-getExercisesList(token)
+# getExercisesList(token)
 
 # createTransactionTrainingData(token, user_id)
 
