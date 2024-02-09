@@ -6,7 +6,7 @@ token, user_id = getInfo()
 
 # getUserInfo()
 
-# getExercisesList(token)
+getExercisesList(token)
 
 # createTransactionTrainingData(token, user_id)
 
@@ -16,4 +16,6 @@ token, user_id = getInfo()
 
 # getAvailableSamples(token, user_id)
 
-getSamples(token, user_id)
+# getSamples(token, user_id)
+
+# listNights(token)

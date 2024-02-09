@@ -180,3 +180,17 @@ def getSamples(token, user_id):
         print(r.json())
     else:
         print(r)
+
+
+def listNights(token):
+    headers = {
+        'Accept': 'application/json',  'Authorization': 'Bearer ' + token
+    }
+
+    r = requests.get('https://www.polaraccesslink.com/v3/users/sleep', headers = headers
+        )
+
+    if r.status_code >= 200 and r.status_code < 400:
+        print(r.json())
+    else:
+        print(r)
