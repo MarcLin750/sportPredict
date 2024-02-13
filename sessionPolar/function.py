@@ -51,7 +51,8 @@ def exercisesList(headers):
 
 def getExercise(headers, exercise_id):
     params = {
-        'samples': True
+        'samples': True,
+        'zones': True
     }
 
     nbr_max_exercise = len(exercise_id)
@@ -68,6 +69,7 @@ def getExercise(headers, exercise_id):
             heure = elements[1]
             heures, minutes, secondes = map(int, heure.split(':'))
             total_secondes = heures * 3600 + minutes * 60 + secondes
+
             with open(f"training-session-{date}-{total_secondes}.json", 'w') as op:
                 json.dump(info, op, indent=4)
         else:

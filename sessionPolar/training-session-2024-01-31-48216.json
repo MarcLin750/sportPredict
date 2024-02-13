@@ -18,6 +18,38 @@
     "fat_percentage": 45,
     "carbohydrate_percentage": 55,
     "protein_percentage": 0,
+    "heart_rate_zones": [
+        {
+            "index": 0,
+            "lower_limit": 86,
+            "upper_limit": 103,
+            "in_zone": "PT8M42S"
+        },
+        {
+            "index": 1,
+            "lower_limit": 103,
+            "upper_limit": 120,
+            "in_zone": "PT21M2S"
+        },
+        {
+            "index": 2,
+            "lower_limit": 120,
+            "upper_limit": 137,
+            "in_zone": "PT6M14S"
+        },
+        {
+            "index": 3,
+            "lower_limit": 137,
+            "upper_limit": 154,
+            "in_zone": "PT4M39S"
+        },
+        {
+            "index": 4,
+            "lower_limit": 154,
+            "upper_limit": 171,
+            "in_zone": "PT44S"
+        }
+    ],
     "samples": [
         {
             "recording_rate": 1,
