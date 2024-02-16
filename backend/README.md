@@ -1,16 +1,15 @@
-# SAP Cloud 
-
-[sport predict cloud app](https://sport-predict-insightful-lizard-pk.cfapps.eu12.hana.ondemand.com/)
-
 # External API : To be used from UI 
 
 - (not ready) *polarload()*:
 	1) *polarloading()* +
-	2) *insert_sessions()*  => starting get_lastsessionfromdb()
-	3) *generate_enrichment()* => starting get_lastsessionfromdb()
-	4) *get_sequenceminvalues()* => loop to perform extractrealsequences() starting get_lastsessionfromdb()
-- *get_listofsessions(optionnal fromSession, optionnal toSession)*
+	2) *get_sessions(>get_lastsessions())*
+	3) *insert_sessions()*
+	4) *populate_enrichment(>get_lastsessions())*
+	5) *get_sequenceminvalues(>get_lastsessions())* => loop to perform extractrealsequences()
+- *get_lastsessions()*
+- *get_listofsessions(optional fromSession, optional toSession)*
 - *get_session(sessionID) + get_exerciceofsession(sessionID)*
+- (on going) *populate_sequences(fromSession, minduration, minspeed)*
 - (not ready) *get_listsequenceminvalues()*
 - (not ready) *get_listsequences(minduration, minspeed)*
 - (not ready) *get_sequence(sequenceID, minduration, minspeed) + get_detailofsequence(sequenceID, minduration, minspeed)*
