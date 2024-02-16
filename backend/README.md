@@ -1,25 +1,31 @@
 # External API : To be used from UI 
 
-- (not ready) *polarload()*:
-	1) *polarloading()* +
-	2) *get_sessions(>get_lastsessions())*
-	3) *insert_sessions()*
-	4) *populate_enrichment(>get_lastsessions())*
-	5) *get_sequenceminvalues(>get_lastsessions())* => loop to perform extractrealsequences()
-- *get_lastsessions()*
-- *get_listofsessions(optional fromSession, optional toSession)*
-- *get_session(sessionID) + get_exerciceofsession(sessionID)*
-- (on going) *populate_sequences(fromSession, minduration, minspeed)*
-- (not ready) *get_listsequenceminvalues()*
-- (not ready) *get_listsequences(minduration, minspeed)*
-- (not ready) *get_sequence(sequenceID, minduration, minspeed) + get_detailofsequence(sequenceID, minduration, minspeed)*
-- (not ready) *delete_allsequences()* :
-	1) *deleteinternal_sequence(none, none, none)*
-- (not ready) *delete_1sequencetype(minduration, minspeed)*
-	1) *deleteinternal_sequence(none, minduration, minspeed)*
-- (not ready) *delete_1sequence(sequenceID, minduration, minspeed)*
-	1) *deleteinternal_sequence(sequenceID, minduration, minspeed)*
-- *cleanup_reset_runningverified()*
+- (not ready) *polarload ()*:
+	1) *polarloading ()* +
+	2) *get_sessions ( >get_lastsessions() )*
+	3) *insert_sessions ()*
+	4) *populate_enrichment ( >get_lastsessions() )*
+	5) *get_sequenceminvalues ( >get_lastsessions() )* => loop to perform extractrealsequences()
+- *get_lastsessions ()*
+    - RETURN: [ (SESSIONID) ]
+- *get_listofsessions ( optional fromSession, optional toSession )*
+    - RETURN: [ (SESSIONID, SPORT, DURATION2, DISTANCE) ]
+- *get_session ( sessionID )*
+    - RETURN: [ (SESSIONID, USERID, DATETIME, ALTITUDE, HEARTRATE, SPEED, CADENCE, DISTANCE, TEMPERATURE) ]
+- *get_exerciceofsession ( sessionID )*
+    - RETURN: [ (SESSIONID, SESSION_YEAR, SESSION_MONTH, SESSION_DAY, USERID, SEX, BIRTHDAY, HEIGHT, WEIGHT, VO2MAX, AEROBICTHRESHOLD, ANAEROBICTHRESHOLD, SPORT, STARTTIME, STARTTIMEEXO, STOPTIME, STOPTIMEEXO, DURATION_CALCULATED, DURATION2, LATITUDE, LONGITUDE, DISTANCE, ASCENT, DESCENT, MAXIMUMHEARTRATE, AVERAGEHEARTRATE, KILOCALORIES, AVGSPEED, MAXSPEED, AVGCADENCE, MAXCADENCE, TIMEINZONE1, TIMEINZONE2, TIMEINZONE3, TIMEINZONE4, TIMEINZONE5, CARDIOLOAD, MUSCLELOAD, CARDIOLOADINTERPRETATION, MUSCLELOADINTERPRETATION, PERCEIVEDLOAD, PERCEIVEDLOADINTERPRETATION, RUNNINGVERIFIED, CATEGORYSESSION) ]
+- (on going) *populate_sequences ( fromSession, minduration, minspeed )*
+- (not ready) *get_listsequenceminvalues ()*
+- (not ready) *get_listsequences ( minduration, minspeed )*
+- (not ready) *get_sequence ( sequenceID, minduration, minspeed) *
+- (not ready) *get_detailofsequence (sequenceID, minduration, minspeed )*
+- (not ready) *delete_allsequences ()* :
+	1) *deleteinternal_sequence ( None, None, None)*
+- (not ready) *delete_1sequencetype ( minduration, minspeed )*
+	1) *deleteinternal_sequence ( none, minduration, minspeed )*
+- (not ready) *delete_1sequence ( sequenceID, minduration, minspeed )*
+	1) *deleteinternal_sequence ( sequenceID, minduration, minspeed )*
+- *cleanup_reset_runningverified ()*
 	1) Null if not Running session, else True
 	2) False if MAXSPEED < 5 or > 45
 	3) False if AVGSPEED < 2 or > 30
